@@ -55,6 +55,12 @@ class DataManager {
         return operation.equals("delete");
     }
 
+
+    protected static String getLineFromUser(Scanner scanner, String header) {
+        System.out.println(header);
+        return scanner.nextLine();
+    }
+
     protected void showAll() {
         System.out.println("Nie zaimplementowano showAll");
     }

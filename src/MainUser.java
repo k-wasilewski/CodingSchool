@@ -3,7 +3,7 @@ import java.util.Scanner;
 class MainUser {
 
     public static void main(String[] args) {
-        UserManager userManager = new UserManager();
+        DataManager userManager = new UserManager();
         userManager.run();
     }
 
@@ -18,7 +18,7 @@ class MainUser {
         protected void showAll() {
             User[] users = userDao.findAll();
 
-            System.out.println("All users:");
+            System.out.println("Wszyscy użytkownicy:");
             for (User user : users) {
                 System.out.println(user);
             }
@@ -55,11 +55,6 @@ class MainUser {
             Scanner scanner = new Scanner(System.in);
             String id = getLineFromUser(scanner, "Id użytkownika do usunięcia");
             userDao.delete(Integer.parseInt(id));
-        }
-
-        private static String getLineFromUser(Scanner scanner, String header) {
-            System.out.println(header);
-            return scanner.nextLine();
         }
     }
 }
