@@ -1,7 +1,3 @@
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Arrays;
-
 class Main {
     public static void main(String[] args) {
 
