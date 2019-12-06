@@ -64,4 +64,18 @@ class UserDao {
 
         return null;
     }
+
+    public void update(User user) {
+        try (Connection conn = DBUtil.connection();
+            PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);) {
+
+            statement.setString(1, user.getUserName());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getPassword());
+            statement.setInt(4, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -4,10 +4,27 @@ import java.sql.SQLException;
 class Main {
     public static void main(String[] args) {
 
-        try(final Connection conn = DBUtil.connection()) {
+        UserDao userDao = new UserDao();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        User newUser = new User("test", "test@test.com", "test123");
+        User createdUser = userDao.create(newUser);
+
+        System.out.println("Create user: " + createdUser);
+
+
+        User readUser = userDao.read(100);
+        System.out.println("Read user: " + readUser);
+
+        System.out.println("--------------------");
+        User userBeforeUpdate = userDao.read(2);
+        System.out.println("User before update: " + userBeforeUpdate);
+
+        User userToUpdate = new User("abc", "def@test.com", "abc12345");
+        userToUpdate.setId(2);
+
+        userDao.update(userToUpdate);
+
+        User userAfterUpdate = userDao.read(2);
+        System.out.println("User after update: " + userAfterUpdate);
     }
 }
