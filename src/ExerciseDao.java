@@ -68,7 +68,7 @@ class ExerciseDao {
 
             statement.setString(1, exercise.getTitle());
             statement.setString(2, exercise.getDescription());
-            statement.setInt(4, exercise.getId());
+            statement.setInt(3, exercise.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -7,15 +7,15 @@ import java.util.Arrays;
 
 class GroupDao {
     private static final String CREATE_GROUP_QUERY =
-            "INSERT INTO groups(name) VALUES (?)";
+            "INSERT INTO user_groups(name) VALUES (?)";
     private static final String READ_GROUP_QUERY =
-            "SELECT id, name FROM groups WHERE id = ?";
+            "SELECT id, name FROM user_groups WHERE id = ?";
     private static final String UPDATE_GROUP_QUERY =
-            "UPDATE groups SET name = ? WHERE id = ?";
+            "UPDATE user_groups SET name = ? WHERE id = ?";
     private static final String DELETE_GROUP_QUERY =
-            "DELETE FROM groups WHERE id = ?";
+            "DELETE FROM user_groups WHERE id = ?";
     private static final String FIND_ALL_GROUP_QUERY =
-            "SELECT id, name FROM groups";
+            "SELECT id, name FROM user_groups";
 
     public Group create(Group group) {
         try (Connection conn = DBUtil.connection();
@@ -65,6 +65,7 @@ class GroupDao {
              PreparedStatement statement = conn.prepareStatement(UPDATE_GROUP_QUERY);) {
 
             statement.setString(1, group.getName());
+            statement.setInt(2, group.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
