@@ -78,4 +78,14 @@ class UserDao {
             e.printStackTrace();
         }
     }
+
+    public void delete(int userId) {
+        try (Connection conn = DBUtil.connection();
+             PreparedStatement statement = conn.prepareStatement(DELETE_USER_QUERY)) {
+            statement.setInt(1, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

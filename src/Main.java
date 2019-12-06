@@ -26,5 +26,15 @@ class Main {
 
         User userAfterUpdate = userDao.read(2);
         System.out.println("User after update: " + userAfterUpdate);
+
+
+        System.out.println("--------------------");
+        User userBeforeDelete = userDao.read(5);
+        System.out.println("User before delete: " + userBeforeDelete);
+
+        userDao.delete(5);
+
+        User userAfterDelete = userDao.read(5);
+        System.out.println("User after delete: " + userAfterDelete);
     }
 }
