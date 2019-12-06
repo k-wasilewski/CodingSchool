@@ -17,6 +17,8 @@ class SolutionDao {
             "DELETE FROM solutions WHERE id = ?";
     private static final String FIND_ALL_SOLUTIONS_QUERY =
             "SELECT id, created, updated, description, exercise_id, user_id FROM solutions";
+    private static final String FIND_ALL_SOLUTIONS_BY_EXERCISE_ID_QUERY =
+            "SELECT id, created, updated, description, exercise_id, user_id FROM solutions WHERE exercise_id = ?";
 
     public Solution create(Solution solution) {
         try (Connection conn = DBUtil.connection();
@@ -98,6 +100,30 @@ class SolutionDao {
     public Solution[] findAll() {
         try (Connection conn = DBUtil.connection();
              PreparedStatement statement = conn.prepareStatement(FIND_ALL_SOLUTIONS_QUERY);) {
+            Solution[] solutions = new Solution[0];
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Solution solution = new Solution();
+                solution.setId(resultSet.getInt("id"));
+                solution.setCreated(resultSet.getTimestamp("created"));
+                solution.setUpdated(resultSet.getTimestamp("updated"));
+                solution.setDescription(resultSet.getString("description"));
+                solution.setExerciseId(resultSet.getInt("exercise_id"));
+                solution.setUserId(resultSet.getInt("user_id"));
+
+                solutions = addToArray(solution, solutions);
+            }
+            return solutions;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Solution[] findAllByExerciseId(int exerciseId) {
+        try (Connection conn = DBUtil.connection();
+             PreparedStatement statement = conn.prepareStatement(FIND_ALL_SOLUTIONS_BY_EXERCISE_ID_QUERY);) {
+            statement.setInt(1, exerciseId);
             Solution[] solutions = new Solution[0];
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
