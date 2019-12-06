@@ -1,10 +1,9 @@
-import com.mysql.cj.xdevapi.DbDoc;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 
 class UserDao {
     private static final String CREATE_USER_QUERY =
@@ -29,7 +28,7 @@ class UserDao {
             ps.executeUpdate();
 
             final ResultSet gk = ps.getGeneratedKeys();
-            if(gk.next()) {
+            if (gk.next()) {
                 final int userId = gk.getInt(1);
                 user.setId(userId);
 
@@ -45,11 +44,11 @@ class UserDao {
     public User read(int userId) {
         try (Connection conn = DBUtil.connection();
              final PreparedStatement ps = conn.prepareStatement(READ_USER_QUERY);
-        ){
+        ) {
             ps.setInt(1, userId);
 
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("username"));
@@ -67,7 +66,7 @@ class UserDao {
 
     public void update(User user) {
         try (Connection conn = DBUtil.connection();
-            PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);) {
+             PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);) {
 
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
@@ -87,5 +86,32 @@ class UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public User[] findAll() {
+        try (Connection conn = DBUtil.connection();
+             PreparedStatement statement = conn.prepareStatement(FIND_ALL_USERS_QUERY);) {
+            User[] users = new User[0];
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setUserName(resultSet.getString("username"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+
+                users = addToArray(user, users);
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private User[] addToArray(User u, User[] users) {
+        User[] tmpUsers = Arrays.copyOf(users, users.length + 1);
+        tmpUsers[users.length] = u;
+        return tmpUsers;
     }
 }

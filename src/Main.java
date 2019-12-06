@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
@@ -36,5 +37,12 @@ class Main {
 
         User userAfterDelete = userDao.read(5);
         System.out.println("User after delete: " + userAfterDelete);
+
+        System.out.println("--------------------");
+        User[] allUsers = userDao.findAll();
+        System.out.println("All users:");
+        for (User user : allUsers) {
+            System.out.println(user);
+        }
     }
 }
