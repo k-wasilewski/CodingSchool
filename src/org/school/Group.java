@@ -1,3 +1,5 @@
+package org.school;
+
 public class Group {
     private int id;
     private String name;
@@ -27,7 +29,7 @@ public class Group {
 
     @Override
     public String toString() {
-        return "Group{" +
+        return "org.school.Group{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

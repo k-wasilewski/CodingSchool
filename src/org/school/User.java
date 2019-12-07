@@ -1,3 +1,5 @@
+package org.school;
+
 public class User {
     private int id;
     private String userName;
@@ -51,7 +53,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "org.school.User{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +

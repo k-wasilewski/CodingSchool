@@ -1,3 +1,7 @@
+package org.school.dao;
+
+import org.school.Solution;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

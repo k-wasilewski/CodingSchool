@@ -1,3 +1,5 @@
+package org.school.test;
+
 import java.util.Scanner;
 
 class DataManager {

@@ -1,3 +1,5 @@
+package org.school;
+
 public class Exercise {
     private int id;
     private String title;
@@ -37,7 +39,7 @@ public class Exercise {
 
     @Override
     public String toString() {
-        return "Exercise{" +
+        return "org.school.Exercise{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +

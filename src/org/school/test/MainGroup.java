@@ -1,3 +1,8 @@
+package org.school.test;
+
+import org.school.dao.GroupDao;
+import org.school.Group;
+
 import java.util.Scanner;
 
 class MainGroup {

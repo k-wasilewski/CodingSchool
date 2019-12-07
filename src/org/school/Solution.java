@@ -1,3 +1,5 @@
+package org.school;
+
 import java.util.Date;
 
 public class Solution {
@@ -70,7 +72,7 @@ public class Solution {
 
     @Override
     public String toString() {
-        return "Solution{" +
+        return "org.school.Solution{" +
                 "id=" + id +
                 ", created=" + created +
                 ", updated=" + updated +

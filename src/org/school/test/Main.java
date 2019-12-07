@@ -1,3 +1,8 @@
+package org.school.test;
+
+import org.school.dao.UserDao;
+import org.school.User;
+
 class Main {
     public static void main(String[] args) {
 

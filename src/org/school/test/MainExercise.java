@@ -1,3 +1,8 @@
+package org.school.test;
+
+import org.school.dao.ExerciseDao;
+import org.school.Exercise;
+
 import java.util.Scanner;
 
 class MainExercise {
