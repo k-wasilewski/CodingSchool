@@ -32,9 +32,9 @@ class DataManager {
         }
     }
 
-    private String getOperationFromUser() {
+    protected String getOperationFromUser() {
         System.out.println();
-        System.out.println("Podaj kod operacji: ");
+        System.out.println("Wybierz jedną z opcji:: ");
         System.out.println("add - dodawanie");
         System.out.println("edit - edycja");
         System.out.println("delete - usuwanie");
@@ -45,19 +45,19 @@ class DataManager {
         return scanner.next();
     }
 
-    private boolean isExitOperation(String operation) {
+    protected boolean isExitOperation(String operation) {
         return operation.equals("quit");
     }
 
-    private boolean isAddOperation(String operation) {
+    protected boolean isAddOperation(String operation) {
         return operation.equals("add");
     }
 
-    private boolean isEditOperation(String operation) {
+    protected boolean isEditOperation(String operation) {
         return operation.equals("edit");
     }
 
-    private boolean isDeleteOperation(String operation) {
+    protected boolean isDeleteOperation(String operation) {
         return operation.equals("delete");
     }
 
