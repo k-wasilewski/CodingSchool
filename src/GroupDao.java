@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 
-class GroupDao {
+public class GroupDao {
     private static final String CREATE_GROUP_QUERY =
             "INSERT INTO user_groups(name) VALUES (?)";
     private static final String READ_GROUP_QUERY =

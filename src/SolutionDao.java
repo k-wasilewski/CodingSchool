@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-class SolutionDao {
+public class SolutionDao {
     private static final String CREATE_SOLUTION_QUERY =
             "INSERT INTO solutions(created, updated, description, exercise_id, user_id) VALUES (?, ?, ?, ?, ?)";
     private static final String READ_SOLUTION_QUERY =

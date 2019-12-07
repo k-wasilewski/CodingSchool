@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 
-class ExerciseDao {
+public class ExerciseDao {
     private static final String CREATE_EXERCISE_QUERY =
             "INSERT INTO exercises(title, description) VALUES (?, ?)";
     private static final String READ_EXERCISE_QUERY =

@@ -1,6 +1,6 @@
 import java.util.Date;
 
-class Solution {
+public class Solution {
 
     private int id;
     private Date created;
