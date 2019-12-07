@@ -2,6 +2,10 @@ package org.school.test;
 
 import java.util.Scanner;
 
+/**
+ * Klasa zawiera logikę pobierania operacji od użytkownika.
+ * Koknretne działania znajdują się w klasach dziedziczących po DataManager
+ */
 class DataManager {
 
     public void run() {
