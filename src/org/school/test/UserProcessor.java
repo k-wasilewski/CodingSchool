@@ -5,10 +5,10 @@ import org.school.dao.UserDao;
 
 import java.util.Scanner;
 
-class UserManager extends DataManager {
+class UserProcessor extends DataProcessor {
     UserDao userDao;
 
-    public UserManager() {
+    public UserProcessor() {
         this.userDao = new UserDao();
     }
 

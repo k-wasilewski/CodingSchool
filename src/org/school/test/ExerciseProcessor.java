@@ -5,10 +5,10 @@ import org.school.dao.ExerciseDao;
 
 import java.util.Scanner;
 
-class ExerciseManager extends DataManager {
+class ExerciseProcessor extends DataProcessor {
     ExerciseDao exerciseDao;
 
-    public ExerciseManager() {
+    public ExerciseProcessor() {
         exerciseDao = new ExerciseDao();
     }
 

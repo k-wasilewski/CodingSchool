@@ -10,13 +10,13 @@ import org.school.dao.UserDao;
 import java.util.Date;
 import java.util.Scanner;
 
-class SolutionManager extends DataManager {
+class SolutionProcessor extends Processor {
 
     UserDao userDao;
     ExerciseDao exerciseDao;
     SolutionDao solutionDao;
 
-    public SolutionManager() {
+    public SolutionProcessor() {
         this.userDao = new UserDao();
         this.exerciseDao = new ExerciseDao();
         this.solutionDao = new SolutionDao();
@@ -29,6 +29,7 @@ class SolutionManager extends DataManager {
             if (isExitOperation(operation)) {
                 break;
             }
+
             if (isAddOperation(operation)) {
                 add();
             } else if (isViewOperation(operation)) {
@@ -39,7 +40,6 @@ class SolutionManager extends DataManager {
         }
     }
 
-    @Override
     protected String getOperationFromUser() {
         System.out.println();
         System.out.println("Wybierz jedną z opcji:: ");
@@ -52,11 +52,18 @@ class SolutionManager extends DataManager {
         return scanner.next();
     }
 
+    protected boolean isExitOperation(String operation) {
+        return operation.equals("quit");
+    }
+
+    protected boolean isAddOperation(String operation) {
+        return operation.equals("add");
+    }
+
     private boolean isViewOperation(String operation) {
         return operation.equals("view");
     }
 
-    @Override
     protected void add() {
 
         User[] users = userDao.findAll();

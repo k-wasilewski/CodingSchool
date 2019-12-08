@@ -5,7 +5,7 @@ package org.school.test;
  */
 class MainGroup {
     public static void main(String[] args) {
-        DataManager userManager = new GroupManager();
+        DataProcessor userManager = new GroupProcessor();
         userManager.run();
     }
 

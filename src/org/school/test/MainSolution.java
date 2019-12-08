@@ -6,7 +6,7 @@ package org.school.test;
 class MainSolution {
 
     public static void main(String[] args) {
-        DataManager dataManager = new SolutionManager();
-        dataManager.run();
+        Processor dataProcessor = new SolutionProcessor();
+        dataProcessor.run();
     }
 }

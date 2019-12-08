@@ -5,10 +5,10 @@ import org.school.dao.GroupDao;
 
 import java.util.Scanner;
 
-class GroupManager extends DataManager {
+class GroupProcessor extends DataProcessor {
     GroupDao groupDao;
 
-    public GroupManager() {
+    public GroupProcessor() {
         groupDao = new GroupDao();
     }
 

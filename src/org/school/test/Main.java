@@ -4,6 +4,7 @@ import org.school.dao.UserDao;
 import org.school.User;
 
 class Main {
+
     public static void main(String[] args) {
 
         UserDao userDao = new UserDao();

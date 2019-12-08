@@ -6,8 +6,9 @@ import java.util.Scanner;
  * Klasa zawiera logikę pobierania operacji od użytkownika.
  * Koknretne działania znajdują się w klasach dziedziczących po DataManager
  */
-class DataManager {
+class DataProcessor extends Processor {
 
+    @Override
     public void run() {
 
         showAll();
@@ -61,11 +62,6 @@ class DataManager {
         return operation.equals("delete");
     }
 
-
-    protected static String getLineFromUser(Scanner scanner, String header) {
-        System.out.println(header);
-        return scanner.nextLine();
-    }
 
     protected void showAll() {
         System.out.println("Nie zaimplementowano showAll");
