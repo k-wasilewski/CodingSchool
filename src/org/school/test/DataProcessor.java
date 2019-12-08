@@ -15,16 +15,16 @@ class DataProcessor extends Processor {
 
         while (true) {
             final String operation = getOperationFromUser();
-            if (isExitOperation(operation)) {
+            if (OperationUtil.isExitOperation(operation)) {
                 break;
             }
-            if (isAddOperation(operation)) {
+            if (OperationUtil.isAddOperation(operation)) {
                 add();
                 showAll();
-            } else if (isEditOperation(operation)) {
+            } else if (OperationUtil.isEditOperation(operation)) {
                 edit();
                 showAll();
-            } else if (isDeleteOperation(operation)) {
+            } else if (OperationUtil.isDeleteOperation(operation)) {
                 delete();
                 showAll();
             } else {
@@ -44,22 +44,6 @@ class DataProcessor extends Processor {
         final Scanner scanner = new Scanner(System.in);
 
         return scanner.next();
-    }
-
-    protected boolean isExitOperation(String operation) {
-        return operation.equals("quit");
-    }
-
-    protected boolean isAddOperation(String operation) {
-        return operation.equals("add");
-    }
-
-    protected boolean isEditOperation(String operation) {
-        return operation.equals("edit");
-    }
-
-    protected boolean isDeleteOperation(String operation) {
-        return operation.equals("delete");
     }
 
 

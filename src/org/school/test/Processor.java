@@ -7,8 +7,4 @@ class Processor {
         System.out.println("Nie zaimplementowano metody run");
     }
 
-    protected static String getLineFromUser(Scanner scanner, String header) {
-        System.out.println(header);
-        return scanner.nextLine();
-    }
 }

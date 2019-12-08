@@ -25,14 +25,14 @@ class SolutionProcessor extends Processor {
     @Override
     public void run() {
         while (true) {
-            final String operation = getOperationFromUser();
-            if (isExitOperation(operation)) {
+            String operation = getOperationFromUser();
+            if (OperationUtil.isExitOperation(operation)) {
                 break;
             }
 
-            if (isAddOperation(operation)) {
+            if (OperationUtil.isAddOperation(operation)) {
                 add();
-            } else if (isViewOperation(operation)) {
+            } else if (OperationUtil.isViewOperation(operation)) {
                 view();
             } else {
                 System.out.println("Nieznana komenda");
@@ -52,18 +52,6 @@ class SolutionProcessor extends Processor {
         return scanner.next();
     }
 
-    protected boolean isExitOperation(String operation) {
-        return operation.equals("quit");
-    }
-
-    protected boolean isAddOperation(String operation) {
-        return operation.equals("add");
-    }
-
-    private boolean isViewOperation(String operation) {
-        return operation.equals("view");
-    }
-
     protected void add() {
 
         User[] users = userDao.findAll();
@@ -74,7 +62,7 @@ class SolutionProcessor extends Processor {
         }
 
         Scanner scanner = new Scanner(System.in);
-        String userId = getLineFromUser(scanner, "Id użytkownika dla którego dodać zadanie");
+        String userId = OperationUtil.getLineFromUser(scanner, "Id użytkownika dla którego dodać zadanie");
 
         Exercise[] all = exerciseDao.findAll();
 
@@ -83,7 +71,7 @@ class SolutionProcessor extends Processor {
             System.out.println(exercise);
         }
 
-        String exerciseId = getLineFromUser(scanner, "Id zadania dla wybranego użytkownika");
+        String exerciseId = OperationUtil.getLineFromUser(scanner, "Id zadania dla wybranego użytkownika");
 
         Solution solution = new Solution(new Date(), null, "", Integer.parseInt(userId), Integer.parseInt(exerciseId));
         solutionDao.create(solution);
@@ -91,7 +79,7 @@ class SolutionProcessor extends Processor {
 
     protected void view() {
         Scanner scanner = new Scanner(System.in);
-        String userId = getLineFromUser(scanner, "rozwiązania użytkownika o id:");
+        String userId = OperationUtil.getLineFromUser(scanner, "rozwiązania użytkownika o id:");
 
         Solution[] userSolutions = solutionDao.findAllByUserId(Integer.parseInt(userId));
         System.out.println("Rozwiązania użytkownika:");

@@ -25,8 +25,8 @@ class ExerciseProcessor extends DataProcessor {
     @Override
     protected void add() {
         Scanner scanner = new Scanner(System.in);
-        String title = getLineFromUser(scanner, "Tytuł zadania");
-        String description = getLineFromUser(scanner, "Opis zadania");
+        String title = OperationUtil.getLineFromUser(scanner, "Tytuł zadania");
+        String description = OperationUtil.getLineFromUser(scanner, "Opis zadania");
 
         Exercise exercise = new Exercise(title, description);
         exerciseDao.create(exercise);
@@ -35,9 +35,9 @@ class ExerciseProcessor extends DataProcessor {
     @Override
     protected void edit() {
         Scanner scanner = new Scanner(System.in);
-        String id = getLineFromUser(scanner, "Id zadania do edycji");
-        String title = getLineFromUser(scanner, "Tytuł zadania");
-        String description = getLineFromUser(scanner, "Opis zadania");
+        String id = OperationUtil.getLineFromUser(scanner, "Id zadania do edycji");
+        String title = OperationUtil.getLineFromUser(scanner, "Tytuł zadania");
+        String description = OperationUtil.getLineFromUser(scanner, "Opis zadania");
 
         Exercise exercise = new Exercise(title, description);
         exercise.setId(Integer.parseInt(id));
@@ -47,7 +47,7 @@ class ExerciseProcessor extends DataProcessor {
     @Override
     protected void delete() {
         Scanner scanner = new Scanner(System.in);
-        String id = getLineFromUser(scanner, "Id zadania do usunięcia");
+        String id = OperationUtil.getLineFromUser(scanner, "Id zadania do usunięcia");
 
         exerciseDao.delete(Integer.parseInt(id));
     }

@@ -25,7 +25,7 @@ class GroupProcessor extends DataProcessor {
     @Override
     protected void add() {
         Scanner scanner = new Scanner(System.in);
-        String name = getLineFromUser(scanner, "Nazwa grupy:");
+        String name = OperationUtil.getLineFromUser(scanner, "Nazwa grupy:");
 
         Group group = new Group(name);
         groupDao.create(group);
@@ -34,8 +34,8 @@ class GroupProcessor extends DataProcessor {
     @Override
     protected void edit() {
         Scanner scanner = new Scanner(System.in);
-        String id = getLineFromUser(scanner, "Id grupy do modyfikacji:");
-        String name = getLineFromUser(scanner, "Nazwa grupy:");
+        String id = OperationUtil.getLineFromUser(scanner, "Id grupy do modyfikacji:");
+        String name = OperationUtil.getLineFromUser(scanner, "Nazwa grupy:");
 
         Group group = new Group(name);
         group.setId(Integer.parseInt(id));
@@ -45,7 +45,7 @@ class GroupProcessor extends DataProcessor {
     @Override
     protected void delete() {
         Scanner scanner = new Scanner(System.in);
-        String id = getLineFromUser(scanner, "Id grupy do usunięcia");
+        String id = OperationUtil.getLineFromUser(scanner, "Id grupy do usunięcia");
 
         groupDao.delete(Integer.parseInt(id));
     }
