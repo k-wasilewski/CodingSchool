@@ -9,6 +9,11 @@ class OperationUtil {
         return scanner.nextLine();
     }
 
+    public static int getIntFromUser(Scanner scanner, String header) {
+        System.out.println(header);
+        return Integer.parseInt(scanner.nextLine());
+    }
+
     public static boolean isExitOperation(String operation) {
         return operation.equals("quit");
     }

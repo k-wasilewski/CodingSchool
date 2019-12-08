@@ -35,20 +35,20 @@ class ExerciseProcessor extends DataProcessor {
     @Override
     protected void edit() {
         Scanner scanner = new Scanner(System.in);
-        String id = OperationUtil.getLineFromUser(scanner, "Id zadania do edycji");
+        int id = OperationUtil.getIntFromUser(scanner, "Id zadania do edycji");
         String title = OperationUtil.getLineFromUser(scanner, "Tytuł zadania");
         String description = OperationUtil.getLineFromUser(scanner, "Opis zadania");
 
         Exercise exercise = new Exercise(title, description);
-        exercise.setId(Integer.parseInt(id));
+        exercise.setId(id);
         exerciseDao.update(exercise);
     }
 
     @Override
     protected void delete() {
         Scanner scanner = new Scanner(System.in);
-        String id = OperationUtil.getLineFromUser(scanner, "Id zadania do usunięcia");
+        int id = OperationUtil.getIntFromUser(scanner, "Id zadania do usunięcia");
 
-        exerciseDao.delete(Integer.parseInt(id));
+        exerciseDao.delete(id);
     }
 }

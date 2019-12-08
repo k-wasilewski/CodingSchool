@@ -37,13 +37,13 @@ class UserProcessor extends DataProcessor {
     @Override
     protected void edit() {
         Scanner scanner = new Scanner(System.in);
-        String id = OperationUtil.getLineFromUser(scanner, "Id użytkownika do edycji");
+        int id = OperationUtil.getIntFromUser(scanner, "Id użytkownika do edycji");
         String userName = OperationUtil.getLineFromUser(scanner, "Imię użytkownika");
         String email = OperationUtil.getLineFromUser(scanner, "Email użytkownika");
         String password = OperationUtil.getLineFromUser(scanner, "Hasło użytkownika");
 
         User user = new User(userName, email, password);
-        user.setId(Integer.parseInt(id));
+        user.setId(id);
 
         userDao.update(user);
     }
@@ -51,7 +51,7 @@ class UserProcessor extends DataProcessor {
     @Override
     protected void delete() {
         Scanner scanner = new Scanner(System.in);
-        String id = OperationUtil.getLineFromUser(scanner, "Id użytkownika do usunięcia");
-        userDao.delete(Integer.parseInt(id));
+        int id = OperationUtil.getIntFromUser(scanner, "Id użytkownika do usunięcia");
+        userDao.delete(id);
     }
 }

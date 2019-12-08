@@ -62,7 +62,7 @@ class SolutionProcessor extends Processor {
         }
 
         Scanner scanner = new Scanner(System.in);
-        String userId = OperationUtil.getLineFromUser(scanner, "Id użytkownika dla którego dodać zadanie");
+        int userId = OperationUtil.getIntFromUser(scanner, "Id użytkownika dla którego dodać zadanie");
 
         Exercise[] all = exerciseDao.findAll();
 
@@ -71,17 +71,17 @@ class SolutionProcessor extends Processor {
             System.out.println(exercise);
         }
 
-        String exerciseId = OperationUtil.getLineFromUser(scanner, "Id zadania dla wybranego użytkownika");
+        int exerciseId = OperationUtil.getIntFromUser(scanner, "Id zadania dla wybranego użytkownika");
 
-        Solution solution = new Solution(new Date(), null, "", Integer.parseInt(userId), Integer.parseInt(exerciseId));
+        Solution solution = new Solution(new Date(), null, "", userId, exerciseId);
         solutionDao.create(solution);
     }
 
     protected void view() {
         Scanner scanner = new Scanner(System.in);
-        String userId = OperationUtil.getLineFromUser(scanner, "rozwiązania użytkownika o id:");
+        int userId = OperationUtil.getIntFromUser(scanner, "rozwiązania użytkownika o id:");
 
-        Solution[] userSolutions = solutionDao.findAllByUserId(Integer.parseInt(userId));
+        Solution[] userSolutions = solutionDao.findAllByUserId(userId);
         System.out.println("Rozwiązania użytkownika:");
         for (Solution solution : userSolutions) {
             System.out.println(solution);

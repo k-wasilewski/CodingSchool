@@ -34,19 +34,19 @@ class GroupProcessor extends DataProcessor {
     @Override
     protected void edit() {
         Scanner scanner = new Scanner(System.in);
-        String id = OperationUtil.getLineFromUser(scanner, "Id grupy do modyfikacji:");
+        int id = OperationUtil.getIntFromUser(scanner, "Id grupy do modyfikacji:");
         String name = OperationUtil.getLineFromUser(scanner, "Nazwa grupy:");
 
         Group group = new Group(name);
-        group.setId(Integer.parseInt(id));
+        group.setId(id);
         groupDao.update(group);
     }
 
     @Override
     protected void delete() {
         Scanner scanner = new Scanner(System.in);
-        String id = OperationUtil.getLineFromUser(scanner, "Id grupy do usunięcia");
+        int id = OperationUtil.getIntFromUser(scanner, "Id grupy do usunięcia");
 
-        groupDao.delete(Integer.parseInt(id));
+        groupDao.delete(id);
     }
 }
