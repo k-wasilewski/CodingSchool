@@ -21,7 +21,7 @@ public class UserDao {
     private static final String FIND_ALL_USERS_QUERY =
             "SELECT id, username, email, password FROM users";
     private static final String FIND_ALL_USERS_BY_GROUP_ID_QUERY =
-            "SELECT id, username, email, password FROM users WHERE group_id = ?";
+            "SELECT id, username, email, password FROM users WHERE user_group_id = ?";
 
     public User create(User user) {
         try (Connection conn = DBUtil.connection();

@@ -11,15 +11,15 @@ import java.util.Arrays;
 
 public class ExerciseDao {
     private static final String CREATE_EXERCISE_QUERY =
-            "INSERT INTO exercises(title, description) VALUES (?, ?)";
+            "INSERT INTO exercise(title, description) VALUES (?, ?)";
     private static final String READ_EXERCISE_QUERY =
-            "SELECT id, title, description FROM exercises WHERE id = ?";
+            "SELECT id, title, description FROM exercise WHERE id = ?";
     private static final String UPDATE_EXERCISE_QUERY =
-            "UPDATE exercises SET title = ?, description = ? WHERE id = ?";
+            "UPDATE exercise SET title = ?, description = ? WHERE id = ?";
     private static final String DELETE_EXERCISE_QUERY =
-            "DELETE FROM exercises WHERE id = ?";
+            "DELETE FROM exercise WHERE id = ?";
     private static final String FIND_ALL_EXERCISE_QUERY =
-            "SELECT id, title, description FROM exercises";
+            "SELECT id, title, description FROM exercise";
 
     public Exercise create(Exercise exercise) {
         try (Connection conn = DBUtil.connection();

@@ -13,19 +13,21 @@ import java.util.Date;
 
 public class SolutionDao {
     private static final String CREATE_SOLUTION_QUERY =
-            "INSERT INTO solutions(created, updated, description, exercise_id, user_id) VALUES (?, ?, ?, ?, ?)";
+            "INSERT INTO solutions(created, updated, description, exercise_id, users_id) VALUES (?, ?, ?, ?, ?)";
     private static final String READ_SOLUTION_QUERY =
-            "SELECT id, created, updated, description, exercise_id, user_id FROM solutions WHERE id = ?";
+            "SELECT id, created, updated, description, exercise_id, users_id FROM solutions WHERE id = ?";
     private static final String UPDATE_SOLUTION_QUERY =
-            "UPDATE solutions SET created = ?, updated = ?, description = ?, exercise_id = ?, user_id = ? WHERE id = ?";
+            "UPDATE solutions SET created = ?, updated = ?, description = ?, exercise_id = ?, users_id = ? WHERE id = ?";
     private static final String DELETE_SOLUTION_QUERY =
             "DELETE FROM solutions WHERE id = ?";
     private static final String FIND_ALL_SOLUTIONS_QUERY =
-            "SELECT id, created, updated, description, exercise_id, user_id FROM solutions";
+            "SELECT id, created, updated, description, exercise_id, users_id FROM solutions";
+    private static final String FIND_I_SOLUTIONS_QUERY =
+            "SELECT id, created, updated, description, exercise_id, users_id FROM solutions ORDER BY updated DESC, created DESC LIMIT ?";
     private static final String FIND_ALL_SOLUTIONS_BY_EXERCISE_ID_QUERY =
-            "SELECT id, created, updated, description, exercise_id, user_id FROM solutions WHERE exercise_id = ?";
+            "SELECT id, created, updated, description, exercise_id, users_id FROM solutions WHERE exercise_id = ?";
     private static final String FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY =
-            "SELECT id, created, updated, description, exercise_id, user_id FROM solutions WHERE user_id = ?";
+            "SELECT id, created, updated, description, exercise_id, users_id FROM solutions WHERE user_id = ?";
 
     public Solution create(Solution solution) {
         try (Connection conn = DBUtil.connection();
@@ -79,7 +81,7 @@ public class SolutionDao {
                 solution.setUpdated(rs.getTimestamp("updated"));
                 solution.setDescription(rs.getString("description"));
                 solution.setExerciseId(rs.getInt("exercise_id"));
-                solution.setUserId(rs.getInt("user_id"));
+                solution.setUserId(rs.getInt("users_id"));
 
                 return solution;
             }
@@ -106,6 +108,30 @@ public class SolutionDao {
         }
     }
 
+    public Solution[] findRecent(int i) {
+        try (Connection conn = DBUtil.connection();
+             PreparedStatement statement = conn.prepareStatement(FIND_I_SOLUTIONS_QUERY);) {
+            Solution[] solutions = new Solution[0];
+            statement.setInt(1, i);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Solution solution = new Solution();
+                solution.setId(resultSet.getInt("id"));
+                solution.setCreated(resultSet.getTimestamp("created"));
+                solution.setUpdated(resultSet.getTimestamp("updated"));
+                solution.setDescription(resultSet.getString("description"));
+                solution.setExerciseId(resultSet.getInt("exercise_id"));
+                solution.setUserId(resultSet.getInt("users_id"));
+
+                solutions = addToArray(solution, solutions);
+            }
+            return solutions;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void delete(int solutionId) {
         try (Connection conn = DBUtil.connection();
              PreparedStatement statement = conn.prepareStatement(DELETE_SOLUTION_QUERY)) {
@@ -128,7 +154,7 @@ public class SolutionDao {
                 solution.setUpdated(resultSet.getTimestamp("updated"));
                 solution.setDescription(resultSet.getString("description"));
                 solution.setExerciseId(resultSet.getInt("exercise_id"));
-                solution.setUserId(resultSet.getInt("user_id"));
+                solution.setUserId(resultSet.getInt("users_id"));
 
                 solutions = addToArray(solution, solutions);
             }
@@ -152,7 +178,7 @@ public class SolutionDao {
                 solution.setUpdated(resultSet.getTimestamp("updated"));
                 solution.setDescription(resultSet.getString("description"));
                 solution.setExerciseId(resultSet.getInt("exercise_id"));
-                solution.setUserId(resultSet.getInt("user_id"));
+                solution.setUserId(resultSet.getInt("users_id"));
 
                 solutions = addToArray(solution, solutions);
             }
@@ -176,7 +202,7 @@ public class SolutionDao {
                 solution.setUpdated(resultSet.getTimestamp("updated"));
                 solution.setDescription(resultSet.getString("description"));
                 solution.setExerciseId(resultSet.getInt("exercise_id"));
-                solution.setUserId(resultSet.getInt("user_id"));
+                solution.setUserId(resultSet.getInt("users_id"));
 
                 solutions = addToArray(solution, solutions);
             }

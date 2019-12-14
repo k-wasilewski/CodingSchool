@@ -1,2 +1,4 @@
-/programming-school.iml
-/.idea/
+CodingSchool.iml
+/.idea
+/target
+/.git
