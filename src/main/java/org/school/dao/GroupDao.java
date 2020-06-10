@@ -11,15 +11,15 @@ import java.util.Arrays;
 
 public class GroupDao {
     private static final String CREATE_GROUP_QUERY =
-            "INSERT INTO user_group(name) VALUES (?)";
+            "INSERT INTO user_groups(name) VALUES (?)";
     private static final String READ_GROUP_QUERY =
-            "SELECT id, name FROM user_group WHERE id = ?";
+            "SELECT id, name FROM user_groups WHERE id = ?";
     private static final String UPDATE_GROUP_QUERY =
-            "UPDATE user_group SET name = ? WHERE id = ?";
+            "UPDATE user_groups SET name = ? WHERE id = ?";
     private static final String DELETE_GROUP_QUERY =
-            "DELETE FROM user_group WHERE id = ?";
+            "DELETE FROM user_groups WHERE id = ?";
     private static final String FIND_ALL_GROUP_QUERY =
-            "SELECT id, name FROM user_group";
+            "SELECT id, name FROM user_groups";
 
     public Group create(Group group) {
         try (Connection conn = DBUtil.connection();
